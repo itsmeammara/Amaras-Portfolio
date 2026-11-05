@@ -1,0 +1,134 @@
+/* Repeatable scroll entrances. No layout properties or permanent layer promotion. */
+.scroll-reveal {
+  --reveal-x: 0px;
+  --reveal-y: 24px;
+  --reveal-scale: 1;
+}
+.scroll-reveal[data-reveal='left'] {
+  --reveal-x: -28px;
+  --reveal-y: 0px;
+}
+.scroll-reveal[data-reveal='right'] {
+  --reveal-x: 28px;
+  --reveal-y: 0px;
+}
+.scroll-reveal[data-reveal='down'] {
+  --reveal-y: -16px;
+}
+.scroll-reveal[data-reveal='zoom'] {
+  --reveal-y: 0px;
+  --reveal-scale: 0.97;
+}
+.scroll-reveal[data-reveal='fade'] {
+  --reveal-y: 0px;
+}
+.scroll-reveal:not(.reveal-stagger),
+.reveal-stagger > * {
+  opacity: 1;
+  translate: 0px 0px;
+  scale: 1;
+  transition:
+    opacity 0.5s ease,
+    translate 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+    scale 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: 0s;
+}
+/* Observation is progressive enhancement, never a prerequisite for content. */
+.scroll-reveal[data-reveal-ready='true'][data-in-view='false']:not(
+    .reveal-stagger
+  ),
+.reveal-stagger[data-reveal-ready='true'][data-in-view='false'] > * {
+  opacity: 0;
+  translate: var(--reveal-x) var(--reveal-y);
+  scale: var(--reveal-scale);
+}
+/* Move away from the viewport on exit to avoid observing our own entrance
+   transform crossing back over the intersection boundary. */
+.scroll-reveal[data-in-view='false'][data-reveal-exit='above'] {
+  --reveal-y: -24px;
+}
+/* Essential form content must never disappear, even while observation settles. */
+.scroll-reveal[data-reveal-essential='true']:not(.reveal-stagger),
+.reveal-stagger[data-reveal-essential='true'] > * {
+  opacity: 1 !important;
+}
+.scroll-reveal[data-in-view='true']:not(.reveal-stagger),
+.scroll-reveal:focus-within:not(.reveal-stagger),
+.reveal-stagger[data-in-view='true'] > *,
+.reveal-stagger:focus-within > * {
+  opacity: 1;
+  translate: 0px 0px;
+  scale: 1;
+  transition-delay: calc(var(--reveal-delay, 0s) + var(--reveal-step, 0s));
+}
+/* Keep focus reachable and immediately visible, including when tabbing offscreen. */
+.scroll-reveal:focus-within:not(.reveal-stagger),
+.reveal-stagger:focus-within > * {
+  transition-delay: 0s;
+}
+.reveal-stagger > :nth-child(2) {
+  --reveal-step: 0.055s;
+}
+.reveal-stagger > :nth-child(3) {
+  --reveal-step: 0.11s;
+}
+.reveal-stagger > :nth-child(4) {
+  --reveal-step: 0.165s;
+}
+.reveal-stagger > :nth-child(5) {
+  --reveal-step: 0.22s;
+}
+.reveal-stagger > :nth-child(6) {
+  --reveal-step: 0.275s;
+}
+.reveal-stagger > :nth-child(7) {
+  --reveal-step: 0.3s;
+}
+.reveal-stagger > :nth-child(8) {
+  --reveal-step: 0.325s;
+}
+.reveal-stagger > :nth-child(9) {
+  --reveal-step: 0.35s;
+}
+.reveal-stagger > :nth-child(10) {
+  --reveal-step: 0.375s;
+}
+.reveal-stagger > :nth-child(n + 11) {
+  --reveal-step: 0.4s;
+}
+/* The existing ambience pause control also disables entrance movement. */
+.experience-static .scroll-reveal:not(.reveal-stagger),
+.experience-static .reveal-stagger > * {
+  opacity: 1 !important;
+  translate: none !important;
+  scale: none !important;
+  transition: none;
+}
+@media (max-width: 767px) {
+  .scroll-reveal {
+    --reveal-y: 16px;
+  }
+  .scroll-reveal[data-reveal='left'] {
+    --reveal-x: -16px;
+  }
+  .scroll-reveal[data-reveal='right'] {
+    --reveal-x: 16px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .scroll-reveal:not(.reveal-stagger),
+  .reveal-stagger > * {
+    opacity: 1 !important;
+    translate: none !important;
+    scale: none !important;
+    transition: none;
+  }
+}
+
+/* Focus overrides the enhanced hidden state, including nested keyboard controls. */
+.scroll-reveal:focus-within:not(.reveal-stagger),
+.reveal-stagger:focus-within > * {
+  opacity: 1 !important;
+  translate: 0px 0px !important;
+  scale: 1 !important;
+}

@@ -1,0 +1,52 @@
+﻿<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="data:," />
+    <meta name="theme-color" content="#050510" />
+    <script>
+      try {
+        const theme =
+          localStorage.getItem('digital-dimension-theme') === 'light'
+            ? 'light'
+            : 'dark'
+        document.documentElement.dataset.theme = theme
+        document.documentElement.style.colorScheme = theme
+        document
+          .querySelector('meta[name="theme-color"]')
+          .setAttribute('content', theme === 'light' ? '#fffaf4' : '#050510')
+      } catch {
+        /* The markup defaults to dark when storage is unavailable. */
+      }
+    </script>
+    <title>Umme Amara | Front-End &amp; Mobile Developer</title>
+    <meta
+      name="description"
+      content="Umme Amara ? Computer Science graduate and aspiring front-end and mobile application developer. Explore my projects, skills, and journey."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Umme Amara" />
+    <meta
+      property="og:title"
+      content="Umme Amara | Front-End &amp; Mobile Developer"
+    />
+    <meta
+      property="og:description"
+      content="Explore my projects, creative interests, skills, education, and internship experience."
+    />
+    <meta name="twitter:card" content="summary" />
+    <meta
+      name="twitter:title"
+      content="Umme Amara | Front-End &amp; Mobile Developer"
+    />
+    <meta
+      name="twitter:description"
+      content="Computer Science graduate exploring responsive interfaces, UI/UX, and AI-powered applications."
+    />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

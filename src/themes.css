@@ -1,0 +1,824 @@
+﻿/* Theme tokens are centralized here; the retained dark rules live in index.css
+   and reference.css, and the preserved light rules are scoped to data-theme. */
+:root {
+  --theme-toggle-bg: #0b1020;
+  --theme-toggle-line: #c6b8ff40;
+  --theme-toggle-text: #d4cceb;
+  --theme-toggle-active: #9d82ff;
+  --theme-toggle-active-bg: #9d82ff26;
+}
+:root[data-theme='light'] {
+  --color-void: #fffaf4;
+  --color-surface: #ffffff;
+  --color-electric: #36bffa;
+  --color-violet: #796bff;
+  --color-cyan: #35d6c0;
+  --color-pink: #ff75c3;
+  --color-mint: #35d6c0;
+  --color-foreground: #18213d;
+  --color-muted: #535e75;
+  --theme-toggle-bg: #fffdf9;
+  --theme-toggle-line: #18213d33;
+  --theme-toggle-text: #43516a;
+  --theme-toggle-active: #a3422d;
+  --theme-toggle-active-bg: #ff9f4326;
+}
+/* The six cards retain the purple/blue/cyan accents from the original theme. */
+:where(html[data-theme='dark']) .accent-0,
+:where(html[data-theme='dark']) .accent-3 {
+  --accent: #8b5cf6;
+}
+:where(html[data-theme='dark']) .accent-1,
+:where(html[data-theme='dark']) .accent-4 {
+  --accent: #3b82f6;
+}
+:where(html[data-theme='dark']) .accent-2,
+:where(html[data-theme='dark']) .accent-5 {
+  --accent: #22d3ee;
+}
+:where(html[data-theme='dark']) .service-heading-icon,
+:where(html[data-theme='dark']) .service-visual {
+  color: var(--accent);
+}
+/* Preserve the previous idle and off-screen rendering safeguards in both modes. */
+.environment-fallback i,
+.orbital-dust,
+.scroll-world .satellite {
+  animation: none;
+}
+.technology-ribbon[data-in-view='false'] > div {
+  animation-play-state: paused;
+}
+.app-shell,
+.cinematic-environment,
+.nav-links,
+.nav-cta,
+.about-story,
+.contact-form-wrap,
+.project-dialog,
+.footer-links,
+.footer-bottom,
+.field input,
+.field textarea,
+.field select {
+  transition:
+    background-color 0.22s ease,
+    color 0.22s ease,
+    border-color 0.22s ease;
+}
+@media (max-width: 1100px) {
+  .navbar {
+    gap: 12px;
+  }
+}
+@media (max-width: 600px) {
+  .navbar {
+    gap: 7px;
+  }
+  .nav-cta {
+    padding-inline: 11px;
+    gap: 7px;
+  }
+  .navbar .wordmark {
+    gap: 7px;
+  }
+}
+@media (max-width: 360px) {
+  .navbar {
+    gap: 5px;
+  }
+  .navbar .wordmark > svg {
+    width: 30px;
+    height: 30px;
+  }
+  .nav-cta {
+    padding-inline: 9px;
+    font-size: 10px;
+  }
+  .nav-cta svg {
+    width: 12px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .app-shell,
+  .cinematic-environment,
+  .nav-links,
+  .nav-cta,
+  .about-story,
+  .contact-form-wrap,
+  .project-dialog,
+  .footer-links,
+  .footer-bottom,
+  .field input,
+  .field textarea,
+  .field select {
+    transition: none;
+  }
+}
+
+/* Legibility adjustments use the existing dark palette's secondary text color. */
+:where(html[data-theme='dark']) .footer-links > span,
+:where(html[data-theme='dark']) .section-side-note,
+:where(html[data-theme='dark']) .form-disclosure {
+  color: #9299b1;
+}
+
+/* Dark universe refinement. Every visual rule is isolated from the light theme. */
+:root[data-theme='dark'] {
+  --color-void: #090b1b;
+  --color-surface: #10162b;
+  --color-electric: #496bff;
+  --color-violet: #a855f7;
+  --color-cyan: #00e5ff;
+  --color-pink: #ff3cac;
+  --color-mint: #b5ff45;
+  --color-foreground: #ffffff;
+  --color-muted: #b5bfd6;
+  --theme-toggle-bg: #10162b;
+  --theme-toggle-line: #496bff4d;
+  --theme-toggle-text: #d2d9ef;
+  --theme-toggle-active: #8befff;
+  --theme-toggle-active-bg: #00e5ff14;
+}
+:where(html[data-theme='dark']) .app-shell {
+  background: #090b1b;
+  color: #fff;
+}
+:where(html[data-theme='dark']) .cinematic-environment {
+  background:
+    radial-gradient(ellipse at 85% 15%, #496bff14, transparent 60%),
+    radial-gradient(ellipse at 12% 85%, #ff3cac09, transparent 65%), #090b1b;
+}
+:where(html[data-theme='dark']) .environment-shade {
+  background:
+    linear-gradient(90deg, #090b1bdf, #090b1b73 45%, #090b1b26 85%),
+    linear-gradient(0deg, #090b1b99, transparent 70%);
+}
+:where(html[data-theme='dark']) .environment-light {
+  background:
+    radial-gradient(
+      ellipse 420px 340px at var(--pointer-x) var(--pointer-y),
+      #00e5ff0f,
+      transparent 75%
+    ),
+    radial-gradient(ellipse at 82% 25%, #496bff14, transparent 60%);
+}
+:where(html[data-theme='dark']) .environment-light::before {
+  content: '';
+  position: absolute;
+  inset: -5%;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 78% 18%, #00e5ff10, transparent 45%),
+    radial-gradient(ellipse at 18% 78%, #ff3cac10, transparent 48%),
+    radial-gradient(ellipse at 65% 70%, #a855f70c, transparent 50%);
+  opacity: 0.75;
+}
+:where(html[data-theme='dark'])
+  .mode-full:not(.is-paused)
+  .environment-light::before {
+  animation: dd-dark-ambient 24s ease-in-out infinite alternate;
+}
+:where(html[data-theme='dark']) .environment-fallback {
+  opacity: 0.22;
+}
+:where(html[data-theme='dark']) .environment-fallback i {
+  border-color: #00e5ff26;
+}
+:where(html[data-theme='dark']) .environment-fallback i:nth-child(2) {
+  border-color: #ff3cac20;
+}
+:where(html[data-theme='dark']) .environment-grain {
+  opacity: 0.025;
+}
+:where(html[data-theme='dark']) .nav-wrap {
+  background: linear-gradient(#090b1be8, transparent);
+}
+:where(html[data-theme='dark']) .nav-links {
+  background: #10162bcc;
+  border-color: #496bff33;
+  backdrop-filter: blur(10px);
+}
+:where(html[data-theme='dark']) .nav-links a {
+  color: #b5bfd6;
+}
+:where(html[data-theme='dark']) .nav-links a:hover,
+:where(html[data-theme='dark']) .nav-links a[aria-current] {
+  color: #fff;
+  background: #496bff20;
+}
+:where(html[data-theme='dark']) .nav-indicator {
+  background: #00e5ff;
+  box-shadow: 0 0 8px #00e5ff40;
+}
+:where(html[data-theme='dark']) .wordmark > svg {
+  background: linear-gradient(140deg, #496bff, #a855f7);
+  box-shadow:
+    inset 0 1px #ffffff40,
+    0 5px 18px -10px #496bff99;
+}
+:where(html[data-theme='dark']) .nav-cta {
+  background: linear-gradient(110deg, #c8f8ff, #e6d7ff);
+  color: #090b1b;
+}
+:where(html[data-theme='dark']) .menu-toggle {
+  border-color: #496bff4d;
+}
+:where(html[data-theme='dark']) .hero-status {
+  background: #10162bcc;
+  border-color: #00e5ff33;
+  color: #c7d4e9;
+  backdrop-filter: none;
+}
+:where(html[data-theme='dark']) .status-dot {
+  background: #b5ff45;
+  box-shadow: 0 0 8px #b5ff4533;
+}
+:where(html[data-theme='dark']) .hero-copy h1,
+:where(html[data-theme='dark']) .section-heading h2,
+:where(html[data-theme='dark']) .contact-copy h2 {
+  color: #fff;
+}
+:where(html[data-theme='dark']) .hero-brand-line .text-metallic {
+  background-image: linear-gradient(
+    110deg,
+    #fff 8%,
+    #bcf5ff 38%,
+    #d8b4ff 65%,
+    #ffb6e1 92%
+  );
+}
+:where(html[data-theme='dark']) .gradient-text {
+  color: transparent;
+  background: linear-gradient(110deg, #8cedff, #cbb1ff 45%, #ff9bd6 85%);
+  background-clip: text;
+}
+:where(html[data-theme='dark']) .hero-role > span {
+  color: #bcefff;
+}
+:where(html[data-theme='dark']) .hero-intro,
+:where(html[data-theme='dark']) .hero-role,
+:where(html[data-theme='dark']) .hero-description,
+:where(html[data-theme='dark']) .section-description,
+:where(html[data-theme='dark']) .contact-copy > p:not(.eyebrow) {
+  color: #b5bfd6;
+}
+:where(html[data-theme='dark']) .section-heading .eyebrow {
+  color: #8befff;
+}
+:where(html[data-theme='dark']) .hero-footnote,
+:where(html[data-theme='dark']) .hero-scroll-cue {
+  color: #96a7c8;
+}
+:where(html[data-theme='dark']) .hero-scroll-cue i {
+  background: linear-gradient(#00e5ff80, transparent);
+}
+:where(html[data-theme='dark']) .scroll-world .chrome-orb {
+  background: radial-gradient(
+    ellipse at 29% 20%,
+    #fff 0%,
+    #d8f5ff 4%,
+    #678cff 13%,
+    #2b3070 27%,
+    #111a38 40%,
+    #255c83 49%,
+    #90efff 54%,
+    #a2b8ff 58%,
+    #7a4ac2 65%,
+    #c04f9e 75%,
+    #382345 88%,
+    #10162b 100%
+  );
+  box-shadow:
+    inset 7px 3px 18px #daeaff66,
+    inset -13px -12px 24px #090b1b,
+    0 14px 40px -20px #496bff55;
+}
+:where(html[data-theme='dark']) .scroll-world .chrome-orb::after {
+  border-color: #baf7ff80;
+  box-shadow: inset 0 0 18px #a855f733;
+}
+:where(html[data-theme='dark']) .scroll-world .orb-line {
+  border-color: #c9e8ff80;
+  box-shadow: 0 2px 4px #00e5ff40;
+  opacity: 0.65;
+}
+:where(html[data-theme='dark']) .scroll-world .orb-core {
+  background: #f0eaffb3;
+  filter: none;
+}
+:where(html[data-theme='dark']) .scroll-world .ring-one {
+  border-top-color: #00e5ffb3;
+  border-bottom-color: #ff3cac80;
+  box-shadow: 0 0 12px #496bff26;
+}
+:where(html[data-theme='dark']) .scroll-world .ring-two {
+  border-color: #a855f766;
+}
+:where(html[data-theme='dark']) .scroll-world .ring-three {
+  border-color: #496bff66;
+}
+:where(html[data-theme='dark']) .world-aura {
+  background:
+    radial-gradient(ellipse at 32% 30%, #496bff26, transparent 60%),
+    radial-gradient(ellipse at 70% 42%, #00e5ff14, transparent 50%),
+    radial-gradient(ellipse at 60% 72%, #ff3cac18, transparent 55%);
+  filter: none;
+}
+:where(html[data-theme='dark']) .scroll-world .orb-glow {
+  background: radial-gradient(ellipse, #a855f71a, transparent 65%);
+  filter: none;
+}
+:where(html[data-theme='dark']) .world-letter-orbit text {
+  fill: #a9d2f0cc;
+}
+:where(html[data-theme='dark']) .world-moon {
+  background: radial-gradient(
+    circle at 25% 25%,
+    #e6fbff,
+    #66b8ed 20%,
+    #254d86 50%,
+    #10162b
+  );
+  box-shadow: inset 1px 1px #9befff80;
+}
+:where(html[data-theme='dark']) .moon-two {
+  background: radial-gradient(
+    circle at 25% 25%,
+    #fff3df,
+    #ff8a32 25%,
+    #7f3a66 65%,
+    #10162b
+  );
+}
+:where(html[data-theme='dark']) .world-grid-sphere {
+  border-color: #00e5ff33;
+  background: repeating-radial-gradient(
+    ellipse,
+    transparent 0 12px,
+    #496bff1a 13px,
+    transparent 14px
+  );
+}
+:where(html[data-theme='dark']) .button {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+:where(html[data-theme='dark']) .button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  border-radius: inherit;
+  background: linear-gradient(110deg, #00e5ff14, #ff3cac1a);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+:where(html[data-theme='dark']) .button:hover::before,
+:where(html[data-theme='dark']) .button:focus-visible::before {
+  opacity: 1;
+}
+:where(html[data-theme='dark']) .button-primary {
+  background: linear-gradient(110deg, #364dba, #6b3db0 60%, #903c79);
+  color: #fff;
+  border-color: #a7baff66;
+  box-shadow:
+    inset 0 1px #dbe2ff4d,
+    0 8px 22px -14px #496bff99;
+}
+:where(html[data-theme='dark']) .button-primary:hover {
+  border-color: #9befff99;
+  box-shadow:
+    inset 0 1px #dbe2ff4d,
+    0 10px 24px -14px #496bffcc;
+}
+:where(html[data-theme='dark']) .button-primary > svg {
+  background: #e8f8ff;
+  color: #364dba;
+}
+:where(html[data-theme='dark']) .button-outline {
+  background: #10162bb3;
+  border-color: #00e5ff40;
+  backdrop-filter: none;
+}
+:where(html[data-theme='dark']) .button-outline:hover {
+  border-color: #00e5ff80;
+  box-shadow: none;
+}
+:where(html[data-theme='dark']) .button-outline > svg {
+  color: #8befff;
+  background: #00e5ff12;
+}
+:where(html[data-theme='dark']) :focus-visible {
+  outline-color: #8befff;
+}
+:where(html[data-theme='dark']) ::selection {
+  background: #496bff80;
+  color: #fff;
+}
+:where(html[data-theme='dark']) .about-story,
+:where(html[data-theme='dark']) .contact-form-wrap {
+  background: linear-gradient(140deg, #496bff09, transparent 65%), #10162bdb;
+  border-color: #496bff33;
+  backdrop-filter: blur(8px);
+  box-shadow:
+    inset 0 1px #ffffff0d,
+    0 18px 36px -26px #0008;
+}
+:where(html[data-theme='dark']) .studio-monogram {
+  color: #8befff;
+  background: #00e5ff0a;
+  border-color: #00e5ff40;
+}
+:where(html[data-theme='dark']) .story-heading .eyebrow {
+  color: #a8c6df;
+}
+:where(html[data-theme='dark']) .about-copy {
+  color: #bdc8df;
+}
+:where(html[data-theme='dark']) .principle-list div {
+  border-color: #496bff26;
+}
+:where(html[data-theme='dark']) .principle-list span {
+  color: #b5ff45;
+}
+:where(html[data-theme='dark']) .accent-0 {
+  --accent: #00e5ff;
+  --accent-rgb: 0 229 255;
+}
+:where(html[data-theme='dark']) .accent-1 {
+  --accent: #ff3cac;
+  --accent-rgb: 255 60 172;
+}
+:where(html[data-theme='dark']) .accent-2 {
+  --accent: #496bff;
+  --accent-rgb: 73 107 255;
+}
+:where(html[data-theme='dark']) .accent-3 {
+  --accent: #ff8a32;
+  --accent-rgb: 255 138 50;
+}
+:where(html[data-theme='dark']) .accent-4 {
+  --accent: #b5ff45;
+  --accent-rgb: 181 255 69;
+}
+:where(html[data-theme='dark']) .accent-5 {
+  --accent: #a855f7;
+  --accent-rgb: 168 85 247;
+}
+:where(html[data-theme='dark']) .service-deck .service-card {
+  background:
+    radial-gradient(
+      ellipse at 100% 0%,
+      rgb(var(--accent-rgb) / 0.07),
+      transparent 65%
+    ),
+    #10162bf5;
+  border-color: rgb(var(--accent-rgb) / 0.28);
+  backdrop-filter: none;
+  box-shadow:
+    inset 0 1px rgb(var(--accent-rgb) / 0.12),
+    0 20px 35px -28px #0009;
+}
+:where(html[data-theme='dark']) .service-card::before {
+  display: none;
+}
+:where(html[data-theme='dark']) .service-card::after {
+  background: radial-gradient(
+    260px circle at var(--spot-x) var(--spot-y),
+    rgb(var(--accent-rgb) / 0.075),
+    transparent 75%
+  );
+}
+:where(html[data-theme='dark']) .service-card:hover,
+:where(html[data-theme='dark']) .service-card:focus-within {
+  border-color: rgb(var(--accent-rgb) / 0.6);
+}
+:where(html[data-theme='dark']) .service-heading-icon {
+  color: var(--accent);
+  filter: drop-shadow(0 0 5px rgb(var(--accent-rgb) / 0.22));
+}
+:where(html[data-theme='dark']) .service-visual {
+  color: var(--accent);
+}
+:where(html[data-theme='dark']) .service-visual > div {
+  border-color: rgb(var(--accent-rgb) / 0.35);
+}
+:where(html[data-theme='dark']) .service-visual > div:nth-child(2) {
+  border-color: rgb(var(--accent-rgb) / 0.18);
+}
+:where(html[data-theme='dark']) .service-big-number {
+  color: rgb(var(--accent-rgb) / 0.075);
+}
+:where(html[data-theme='dark']) .service-details .eyebrow,
+:where(html[data-theme='dark']) .service-presentation > .eyebrow {
+  color: color-mix(in srgb, var(--accent) 50%, white);
+}
+:where(html[data-theme='dark']) .service-card p:not(.eyebrow) {
+  color: #b5bfd6;
+}
+:where(html[data-theme='dark']) .service-presentation ul {
+  color: #c4cce0;
+}
+:where(html[data-theme='dark']) .service-card li::before {
+  color: var(--accent);
+}
+:where(html[data-theme='dark']) .service-link {
+  color: #e6ecff;
+}
+:where(html[data-theme='dark']) .project-vision {
+  --project-accent: #00e5ff;
+  --project-rgb: 0 229 255;
+}
+:where(html[data-theme='dark']) .project-glamour {
+  --project-accent: #ff3cac;
+  --project-rgb: 255 60 172;
+}
+:where(html[data-theme='dark']) .project-cargo {
+  --project-accent: #496bff;
+  --project-rgb: 73 107 255;
+}
+:where(html[data-theme='dark']) .project-recipe {
+  --project-accent: #ff8a32;
+  --project-rgb: 255 138 50;
+}
+:where(html[data-theme='dark']) .project-art-button {
+  border-color: rgb(var(--project-rgb) / 0.3);
+  transition:
+    border-color 0.3s ease,
+    transform 0.3s ease;
+}
+:where(html[data-theme='dark']) .project-art-button::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(
+    140deg,
+    rgb(var(--project-rgb) / 0.1),
+    transparent 40% 65%,
+    rgb(var(--project-rgb) / 0.16)
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+:where(html[data-theme='dark']) .project-art-button:hover::after,
+:where(html[data-theme='dark']) .project-art-button:focus-visible::after {
+  opacity: 1;
+}
+:where(html[data-theme='dark']) .project-art-button:hover,
+:where(html[data-theme='dark']) .project-art-button:focus-visible {
+  border-color: rgb(var(--project-rgb) / 0.7);
+  box-shadow: 0 12px 24px -20px rgb(var(--project-rgb) / 0.45);
+}
+:where(html[data-theme='dark']) .project .project-open {
+  color: color-mix(in srgb, var(--project-accent) 55%, white);
+  background: #090b1be6;
+  border-color: rgb(var(--project-rgb) / 0.4);
+  z-index: 1;
+}
+:where(html[data-theme='dark']) .project-meta .eyebrow {
+  color: color-mix(in srgb, var(--project-accent) 45%, white);
+}
+:where(html[data-theme='dark']) .project-description {
+  color: #b5bfd6;
+}
+:where(html[data-theme='dark']) .project-dialog {
+  background: #10162b;
+  border-color: #496bff59;
+  box-shadow: 0 25px 60px #0008;
+}
+:where(html[data-theme='dark']) .project-dialog::backdrop {
+  background: #090b1be0;
+  backdrop-filter: blur(4px);
+}
+:where(html[data-theme='dark']) .project-dialog .project-availability {
+  color: #b8dfea !important;
+  border-color: #00e5ff;
+}
+:where(html[data-theme='dark']) .project-tags span {
+  border-color: #496bff33;
+  color: #c7d3ee;
+  background: #496bff0a;
+}
+:where(html[data-theme='dark']) .tech-controls button {
+  color: #c4cee6;
+  background: #10162bcc;
+  border-color: #496bff33;
+  backdrop-filter: none;
+}
+:where(html[data-theme='dark']) .tech-controls button:hover,
+:where(html[data-theme='dark']) .tech-controls button.selected {
+  color: #fff;
+  background: #00e5ff0d;
+  border-color: #00e5ff59;
+}
+:where(html[data-theme='dark']) .tech-controls button svg {
+  color: #9dafff;
+}
+:where(html[data-theme='dark']) .tech-controls button.selected svg {
+  color: #00e5ff;
+}
+:where(html[data-theme='dark']) .tech-core > svg {
+  color: #8befff;
+  filter: none;
+}
+:where(html[data-theme='dark']) .tech-orbit {
+  border-color: #496bff40;
+}
+:where(html[data-theme='dark']) .orbit-offset {
+  border-color: #ff3cac33;
+}
+:where(html[data-theme='dark']) .tech-orbit::after {
+  background: #00e5ff;
+  box-shadow: none;
+}
+:where(html[data-theme='dark']) .orbit-offset::after {
+  background: #ff3cac;
+}
+:where(html[data-theme='dark']) .tech-detail {
+  border-color: #496bff26;
+}
+:where(html[data-theme='dark']) .tech-detail p {
+  color: #b5bfd6;
+}
+:where(html[data-theme='dark']) .tech-detail .eyebrow {
+  color: #b5ff45;
+}
+:where(html[data-theme='dark']) .technology-ribbon {
+  background: #496bff08;
+  border-color: #496bff26;
+}
+:where(html[data-theme='dark']) .technology-ribbon span {
+  color: #c7d3ee;
+}
+:where(html[data-theme='dark']) .process-progress {
+  background: linear-gradient(90deg, #00e5ff, #496bff, #ff3cac);
+}
+:where(html[data-theme='dark']) .process-track {
+  border-color: #496bff40;
+}
+:where(html[data-theme='dark']) .process-track::before {
+  background: #b5ff45;
+  box-shadow: none;
+}
+:where(html[data-theme='dark']) .process-track svg {
+  color: #ffb27a;
+}
+:where(html[data-theme='dark']) .process-step p {
+  color: #b5bfd6;
+}
+:where(html[data-theme='dark']) .process-step .step-summary {
+  color: #d3ddf0;
+}
+:where(html[data-theme='dark']) .contact-copy .eyebrow {
+  color: #ffb27a;
+}
+:where(html[data-theme='dark']) .contact-note {
+  color: #b5ff45;
+}
+:where(html[data-theme='dark']) .contact-note p {
+  color: #c7d3ee;
+}
+:where(html[data-theme='dark']) .field input,
+:where(html[data-theme='dark']) .field textarea,
+:where(html[data-theme='dark']) .field select {
+  background: #090b1b99;
+  color: #fff;
+  border-color: #496bff40;
+}
+:where(html[data-theme='dark']) .field input:focus,
+:where(html[data-theme='dark']) .field textarea:focus,
+:where(html[data-theme='dark']) .field select:focus {
+  border-color: #00e5ff80;
+}
+:where(html[data-theme='dark']) .field label {
+  color: #d3ddf0;
+}
+:where(html[data-theme='dark']) .form-disclosure,
+:where(html[data-theme='dark']) .form-intro,
+:where(html[data-theme='dark']) .footer-links,
+:where(html[data-theme='dark']) .footer-top > div > p {
+  color: #aebbd4;
+}
+:where(html[data-theme='dark']) .site-footer {
+  border-color: #496bff33;
+  background: radial-gradient(ellipse at 95% 100%, #496bff08, transparent 65%);
+}
+:where(html[data-theme='dark']) .footer-links a:hover {
+  color: #8befff;
+}
+:where(html[data-theme='dark']) .back-top {
+  border-color: #496bff59;
+  color: #c7d3ee;
+}
+:where(html[data-theme='dark']) .back-top:hover {
+  border-color: #00e5ff80;
+  color: #8befff;
+}
+:where(html[data-theme='dark']) .ambient-toggle {
+  background: #10162bed;
+  color: #bdc8e0;
+  border-color: #496bff33;
+  backdrop-filter: none;
+}
+@keyframes dd-dark-ambient {
+  from {
+    transform: translate3d(-1%, 0, 0);
+    opacity: 0.6;
+  }
+  to {
+    transform: translate3d(1%, 1%, 0);
+    opacity: 0.9;
+  }
+}
+@media (max-width: 767px), (pointer: coarse) {
+  :where(html[data-theme='dark']) .about-story,
+  :where(html[data-theme='dark']) .contact-form-wrap,
+  :where(html[data-theme='dark']) .nav-links {
+    backdrop-filter: none;
+  }
+  :where(html[data-theme='dark']) .nav-links {
+    background: #10162bfa;
+  }
+  :where(html[data-theme='dark']) .scroll-world .chrome-orb {
+    box-shadow:
+      inset 5px 2px 12px #daeaff55,
+      inset -8px -8px 18px #090b1b;
+  }
+  :where(html[data-theme='dark']) .scroll-world .ring-one,
+  :where(html[data-theme='dark']) .project-art-button:hover,
+  :where(html[data-theme='dark']) .project-art-button:focus-visible {
+    box-shadow: none;
+  }
+  :where(html[data-theme='dark']) .service-heading-icon {
+    filter: none;
+  }
+  :where(html[data-theme='dark']) .mode-full .environment-light::before {
+    animation: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  :where(html[data-theme='dark']) .environment-light::before {
+    animation: none !important;
+  }
+  :where(html[data-theme='dark']) .button::before,
+  :where(html[data-theme='dark']) .project-art-button::after {
+    transition: none;
+  }
+}
+
+/* Icon-only theme control; the navigation slot and theme store are unchanged. */
+.theme-toggle {
+  display: inline-grid;
+  place-items: center;
+  flex: 0 0 36px;
+  width: 36px;
+  min-width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  color: var(--theme-toggle-text);
+  cursor: pointer;
+  transition: color 160ms ease;
+}
+.theme-toggle .theme-toggle-icon {
+  display: block;
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  background: none;
+  animation: dd-theme-icon-enter 160ms ease-out;
+  transition: filter 160ms ease;
+}
+.theme-toggle:hover,
+.theme-toggle:focus-visible {
+  color: var(--theme-toggle-active);
+  background: transparent;
+  box-shadow: none;
+}
+.theme-toggle:hover .theme-toggle-icon {
+  filter: drop-shadow(0 0 4px var(--theme-toggle-active));
+}
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--theme-toggle-active);
+  outline-offset: 2px;
+}
+@keyframes dd-theme-icon-enter {
+  from { opacity: 0; transform: rotate(-20deg) scale(.85); }
+  to { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .theme-toggle,
+  .theme-toggle .theme-toggle-icon { animation: none; transition: none; }
+}
